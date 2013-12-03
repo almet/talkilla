@@ -10,14 +10,12 @@ var SidebarApp = (function(app, $) {
     options = options || {};
 
     this.http = new HTTP();
-
-    this.appStatus = new app.models.AppStatus();
-
     this.appPort = new AppPort();
 
+    this.appStatus = new app.models.AppStatus();
     this.user = new app.models.CurrentUser();
-
     this.users = new app.models.UserSet();
+    this.spa = new app.models.SPA();
 
     this.services = {
       google: new GoogleContacts({
@@ -123,8 +121,9 @@ var SidebarApp = (function(app, $) {
     this.users.reset();
   };
 
-  SidebarApp.prototype._onSPAConnected = function() {
+  SidebarApp.prototype._onSPAConnected = function(msg) {
     this.user.set({presence: "connected"});
+    this.spa.set("capabilities", msg.capabilities);
   };
 
   SidebarApp.prototype._onError = function(error) {
