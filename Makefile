@@ -70,7 +70,7 @@ cover_server:
 .PHONY: selenium_all
 selenium_all:
 	bin/run_selenium_test.sh $(FRONTEND_CMD) \
-		$(FUNCTIONAL_CMD)
+		#$(FUNCTIONAL_CMD)
 
 .PHONY: release_all
 release_all:
